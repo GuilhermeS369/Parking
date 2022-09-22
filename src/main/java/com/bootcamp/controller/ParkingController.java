@@ -5,6 +5,8 @@ import com.bootcamp.controller.DTO.ParkingDTO;
 import com.bootcamp.controller.mapper.ParkingMapper;
 import com.bootcamp.model.Parking;
 import com.bootcamp.service.ParkingService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/parking")
+@Api(tags = "Parking Controller")
 public class ParkingController {
     @Autowired
     private ParkingService parkingService;
@@ -21,6 +24,7 @@ public class ParkingController {
     private ParkingMapper parkingMapper;
 
     @GetMapping
+    @ApiOperation("Find all parkings.")
     public ResponseEntity <List<ParkingDTO>> findAll(){
         List<Parking> parkingList = parkingService.findAll();
         List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);
