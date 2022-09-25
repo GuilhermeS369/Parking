@@ -1,14 +1,11 @@
 package com.bootcamp.service;
 
-import com.bootcamp.controller.DTO.ParkingDTO;
+import com.bootcamp.exception.ParkingNotFoundException;
 import com.bootcamp.model.Parking;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.Arrays.asList;
 
 @Service
 public class ParkingService {
@@ -31,8 +28,17 @@ public class ParkingService {
 
     }
 
+    public void delete(String id){
+        findById(id);
+        parkingMap.remove(id);
+    }
+
     public Parking findById(String id){
-        return parkingMap.get(id);
+        Parking parking = parkingMap.get(id);
+        if(parking == null) {
+            throw new ParkingNotFoundException(id);
+        }
+        return parking;
     }
 
     public List<Parking> findAll(){
@@ -52,5 +58,11 @@ public class ParkingService {
     }
 
 
+    public Parking update(String id, Parking toParking) {
+    Parking parking = findById(id);
+    parking.setColor(toParking.getColor());
+    parkingMap.replace(id, parking);
+    return toParking;
 
+    }
 }
