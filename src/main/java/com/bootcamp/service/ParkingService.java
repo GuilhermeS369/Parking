@@ -65,4 +65,12 @@ public class ParkingService {
     return toParking;
 
     }
+
+    public Parking exit(String id) {
+    Parking parking = findById(id);
+    parking.setExitDate(LocalDateTime.now());
+    parking.setBill(BillService.calcular(parking.getEntryDate(), parking.getExitDate()));
+    parkingMap.put(id,parking);
+    return parking;
+    }
 }
