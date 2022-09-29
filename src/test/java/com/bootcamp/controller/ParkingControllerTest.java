@@ -1,10 +1,14 @@
 package com.bootcamp.controller;
 
+import com.bootcamp.controller.DTO.ParkingCreateDTO;
 import io.restassured.RestAssured;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -20,12 +24,34 @@ class ParkingControllerTest {
     }
 
     @Test
-    void wheFindAllThenCheckResult(){
-
+    void whenFindAllThenCheckResult(){
+    RestAssured.given()
+            .when()
+            .get("/parking")
+            .then()
+            .statusCode(HttpStatus.OK.value())
+            .extract().response().body().prettyPrint();
     }
 
     @Test
-    void create(){
+    void whenCreateThenCheckIsCreated(){
+
+        var createDTO = new ParkingCreateDTO();
+        createDTO.setColor("RED");
+        createDTO.setLicense("cku-3902");
+        createDTO.setModel("FUSCA");
+        createDTO.setState("RJ");
+
+        RestAssured.given()
+                .when()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(createDTO)
+                .post("/parking")
+                .then()
+                .statusCode(201)
+                .body("license", Matchers.equalTo("cku-3902"))
+                .body("color", Matchers.equalTo("RED"));
+
 
     }
 
