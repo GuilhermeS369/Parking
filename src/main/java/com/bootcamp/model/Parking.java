@@ -1,11 +1,17 @@
 package com.bootcamp.model;
 
 import lombok.Data;
+import lombok.Getter;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
+@Entity
 public class Parking {
 
+    @Id
     private String id;
     private String license;
     private String state;
