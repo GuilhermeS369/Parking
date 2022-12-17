@@ -1,6 +1,5 @@
 package com.bootcamp.service;
 
-
 import com.bootcamp.model.Parking;
 
 import java.time.Instant;
@@ -19,11 +18,12 @@ public class BillService {
     public static final double DAY_VALUE = 20.00;
 
     public static double getBill(Parking parking){
+
         return getBill(parking.getEntryDate(), parking.getExitDate());
     }
 
     public static Double getBill(LocalDateTime entry,LocalDateTime exit) {
-
+        //FAZ A CONTA DE UMA DATA MENOS OUTRA DATA E RETORNA EM MINUTOS A DIFERENÇA
         long minutes = entry.until(exit, ChronoUnit.MINUTES);
 
         Double bill = 0.0;
