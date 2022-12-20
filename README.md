@@ -34,260 +34,82 @@ Alocar os arquivos em questão e abrir o Executavel.bat.
 
 ## ⚙️ Usabilidade (Requisições) 
 
-`GET` Users
+`GET` Parking
 
 ```yaml
 
 Buscar todos:
-localhost:8080/users
+localhost:8080/parking
 ```
 ```yaml
 Buscar pelo ID:
-localhost:8080/users/{ID}
+localhost:8080/parking/{ID}
 Exemplo:
-localhost:8080/users/1
+localhost:8080/parking/e12a6d64896f424bad5ba44dcb9e6e4e
 ```
 ___________________________________________________________________________________________________________________
 
-`POST` Users
+`POST` Parking Entry
 
 ```yaml
-Inserir um novo usuário:
-localhost:8080/users/
+Registro de entrada de um veiculo
+localhost:8080/parking
 
 Enviar no Body em formato JSON:
 {
-"name" : "Alice",
-"email" : "Alice@gmail.com"
-"phone" : "999999999"
-"password" : "123456"
+
+  "color": "string",
+  "license": "string",
+  "model": "string",
+  "state": "string"
+
 }
-```
-____________________________________________________________________________________________________________________
-
-`PUT` Users
-
-```yaml
-Alterar um usuário existente:
-localhost:8080/users/{ID}
-Exemplo:
-localhost:8080/users/1
-
-Enviar no Body em formato JSON:
-{
-"name" : "Alice",
-"email" : "Alice@gmail.com"
-"phone" : "999999999"
-}
-```
-____________________________________________________________________________________________________________________
-
-`DELETE` Users
-
-```yaml
-localhost:8080/users/{ID}
-Exemplo:
-localhost:8080/users/1
-```
-____________________________________________________________________________________________________________________
-
-____________________________________________________________________________________________________________________
-
-`GET` Product
-
-```yaml
-
-Buscar todos:
-localhost:8080/products
-```
-```yaml
-Buscar pelo ID:
-localhost:8080/products/{ID}
-Exemplo:
-localhost:8080/products/1
 ```
 ___________________________________________________________________________________________________________________
 
-`POST` Product
+`POST` Parking Exit
 
 ```yaml
-Inserir um novo produto:
-localhost:8080/products/
+Registro de saida de um veiculo
+localhost:8080/parking/{ID}
+
+Exemplo:
+localhost:8080/parking/e12a6d64896f424bad5ba44dcb9e6e4e
+
+
+```
+____________________________________________________________________________________________________________________
+
+`PUT` Parking
+
+```yaml
+Alterar um ticket
+localhost:8080/parking/{ID}
+Exemplo:
+localhost:8080/parking/e12a6d64896f424bad5ba44dcb9e6e4e
 
 Enviar no Body em formato JSON:
 {
-"name" : "Notebook",
-"description" : "Notebook gamer",
-"price" : "99.99",
-"imgUrl" : "www.yyyy.com/yyy.png"
+  "color": "string",
+  "license": "string",
+  "model": "string",
+  "state": "string"
 }
 ```
 ____________________________________________________________________________________________________________________
 
-`PUT` Product
+`DELETE` Parking
 
 ```yaml
-Alterar um produto existente:
-localhost:8080/products/{ID}
+localhost:8080/parking/{ID}
 Exemplo:
-localhost:8080/products/1
-
-Enviar no Body em formato JSON:
-{
-"name" : "Notebook",
-"description" : "Notebook gamer",
-"price" : "99.99",
-"imgUrl" : "www.yyyy.com/yyy.png"
-}
-```
-
-```yaml
-Colocar uma categoria em um produto:
-localhost:8080/products/{ID}/cat
-Exemplo:
-localhost:8080/products/1/cat
-
-Enviar no Body em formato JSON:
-{
-"id" : 1,
-"name" : "Eletronics"
-}
-```
-
-____________________________________________________________________________________________________________________
-
-`DELETE` Product
-
-```yaml
-localhost:8080/products/{ID}
-Exemplo:
-localhost:8080/products/1
-```
-____________________________________________________________________________________________________________________
-
-____________________________________________________________________________________________________________________
-
-
-`GET` Category
-
-```yaml
-
-Buscar todos:
-localhost:8080/categories
-```
-```yaml
-Buscar pelo ID:
-localhost:8080/categories/{ID}
-Exemplo:
-localhost:8080/categories/1
-```
-___________________________________________________________________________________________________________________
-
-`POST` Category
-
-```yaml
-Inserir uma nova categoria:
-localhost:8080/categories/
-
-Enviar no Body em formato JSON:
-{
-"name" : "Eletronics"
-}
-```
-____________________________________________________________________________________________________________________
-`PUT` Category
-
-```yaml
-
-Alterar uma categoria existente:
-localhost:8080/categories/{ID}
-Exemplo:
-localhost:8080/categories/1
-
-Enviar no Body em formato JSON:
-{
-"name" : "Books"
-}
-```
-____________________________________________________________________________________________________________________
-`DELETE` Category
-
-```yaml
-localhost:8080/categories/{ID}
-Exemplo:
-localhost:8080/categories/1
-```
-____________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________
-`GET` Orders
-
-```yaml
-
-Buscar todos:
-localhost:8080/orders
-```
-```yaml
-Buscar pelo ID:
-localhost:8080/orders/{ID}
-Exemplo:
-localhost:8080/orders/1
-```
-___________________________________________________________________________________________________________________
-
-`POST` Orders
-
-```yaml
-Inserir um novo pedido:
-localhost:8080/orders
-
-Enviar no Body em formato JSON:
-{
-     "moment": "2019-06-20T19:53:07Z",
-     "orderStatus" :1,
-     "client":{
-            "id": 1,
-            "name": "Maria Brown",
-            "email": "maria@gmail.com",
-            "phone": "988888888",
-            "password": "123456"
-        },
-        "items": [{
-                "quantity": 2,
-                "price": 90.5,
-                "subTotal": 181.0,
-                "product": {
-                    "id": 1,
-                    "name": "The Lord of the Rings",
-                    "description": "Lorem ipsum dolor sit amet, consectetur.",
-                    "price": 90.5,
-                    "imgUrl": "",
-                    "categories": [
-                        {
-                            "id": 2,
-                            "name": "Books"
-                        }
-                    ]
-                }
-           } 
-      ]
-       
-}
-
-```
-____________________________________________________________________________________________________________________
-
-`DELETE` Orders
-
-```yaml
-localhost:8080/orders/{ID}
-Exemplo:
-localhost:8080/orders/1
+localhost:8080/parking/e12a6d64896f424bad5ba44dcb9e6e4e
 ```
 ____________________________________________________________________________________________________________________
 
 ## 🛠️ Construído com
 
-* [SpringToolsSuite4](https://spring.io/guides/gs/sts/) - IDE
+* [Intellij](https://www.jetbrains.com/pt-br/idea/) - IDE
 * [SpringBoot](https://spring.io/) - Framework principal
 * [Maven](https://maven.apache.org/) - Gerente de Dependência
 * [PostgreSQL](https://www.postgresql.org/about/) - Banco de dados
